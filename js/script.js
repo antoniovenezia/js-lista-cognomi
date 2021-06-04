@@ -1,10 +1,17 @@
-
 var surnames = ["Bianchi", "Neri", "Rossi", "Verdi", "Gialli"];
 
-var surnameUser = surnames.push(prompt("Qual'è il tuo cognome?"));
+var surnameUser = prompt("Qual'è il tuo cognome?");
 
-for (var i = 0; i < surnames.length; i++) {
-    surnames.sort();
-    document.getElementById("surnameOutput").innerHTML = surnames.join("<br>");
-    var humanCount = surnames.indexOf(surnames.sort);
-}
+// per ovviare al problema dove sort ordina le lettere maiuscole in un gruppo
+// differente rispetto alle lettere minuscole, allora trasformiamo l'input
+// in una parola con la prima lettera maiuscola.
+
+surnameUser = surnameUser[0].toUpperCase() + surnameUser.slice(1);
+
+surnames.push(surnameUser);
+
+surnames.sort();
+
+var position = surnames.indexOf(surnameUser) + 1;
+
+document.getElementById("surnameOutput").innerHTML = position;
